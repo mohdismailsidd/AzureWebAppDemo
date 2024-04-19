@@ -1,0 +1,35 @@
+﻿@page
+@model ProductIndexModel
+@{
+    ViewData["Title"] = "Product Index";
+}
+
+<div class="text-center">
+    <h1 class="display-4">This is a list of Products</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Product ID</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Quantity</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model.products)
+            {
+                <tr>
+                    <td>@product.ProductId</td>
+                    <td>@product.ProductName</td>
+                    <td>@product.Quantity</td>
+                    <td>
+                        <a class="btn btn-success" role="button" asp-page="/ProductViews/EditProduct" asp-route-id="@product.ProductId" asp-rou>Edit</a> |
+                        <a class="btn btn-info" role="button" asp-page="/ProductViews/ProductDetails" asp-route-id="@product.ProductId">Details</a> |
+                        <a class="btn btn-danger" role="button" asp-page="/ProductViews/DeleteProduct" asp-route-id="@product.ProductId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a class="btn btn-success" role="button" asp-page="/ProductViews/CreateProduct" asp-rou>Create</a>
+</div>
